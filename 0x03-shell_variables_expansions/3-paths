@@ -1,2 +1,11 @@
 #!/bin/bash
-echo $PATH | tr ":" "/n" | wc -1
+IFS=':' read -ra PATH_ARRAY <<< "$PATH"
+count=0
+
+for dir in "${PATH_ARRAY[@]}"; do
+    if [[ -n "$dir" ]]; then
+        ((count++))
+    fi
+done
+
+echo $count
