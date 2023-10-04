@@ -1,8 +1,2 @@
 #!/bin/bash
-
-WATER="$WATER" STIR="$STIR" python - <<EOF
-water = int(os.environ['WATER'], 36)
-stir = int(os.environ['STIR'], 36)
-result = water + stir
-print(base36encode(result))
-EOF
+printf "%o\n" $(( $((5#$(echo $WATER | tr water 01234))) + $((5#$(echo $STIR | tr stir. 01234))) )) | tr 01234567 bestchol
